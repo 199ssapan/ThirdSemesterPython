@@ -41,4 +41,4 @@ def test(n):
 
 test(100)
 test(1_000)
-test(100_000)
+test(10_000)
