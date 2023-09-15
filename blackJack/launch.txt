@@ -1,0 +1,1 @@
+To star programm enter 'python –m blackJack'

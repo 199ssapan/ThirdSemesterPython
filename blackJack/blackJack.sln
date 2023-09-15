@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ReportCard", "ReportCard\ReportCard.pyproj", "{3C92D4F0-6BD0-4DD9-9A43-8BAFC7BDAF0D}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "blackJack", "blackJack\blackJack.pyproj", "{D335045A-C417-4DAA-A13B-A294EB4B1B74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3C92D4F0-6BD0-4DD9-9A43-8BAFC7BDAF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C92D4F0-6BD0-4DD9-9A43-8BAFC7BDAF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D335045A-C417-4DAA-A13B-A294EB4B1B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D335045A-C417-4DAA-A13B-A294EB4B1B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9BF9F97F-2AE3-49F9-AC96-095C52CFB9CB}
+		SolutionGuid = {A1F32519-299D-47D4-849C-313FD55F91B9}
 	EndGlobalSection
 EndGlobal
