@@ -1,9 +1,12 @@
+"""
+This is a my clear code
+"""
 
 
 import sqlite3
 
-import students as st
-import marks as mk
+from .modules import students as st
+from .modules import marks as mk
 
 OK = 0
 ERROR = 1
@@ -22,7 +25,7 @@ cur.execute(""" CREATE TABLE IF NOT EXISTS students (
 
 
 while True:
-    st.clrCnsl()
+    mk.clr_cnsl()
     print("1. Change existing marks")
     print("2. Add mark")
     print("3. Delete mark")
@@ -33,29 +36,29 @@ while True:
     c = int(input())
     sts = cur.execute(""" SELECT * FROM students """)
     if c == st.CHANGE_EXISTS:
-        if mk.changeExistingMarks(cur, con, 0) == ERROR:
+        if mk.change_existing_marks(cur, con, 0) == ERROR:
             continue
     elif c == st.ADD_NEW_MARK:
-        if mk.addNewMark(cur, con) == ERROR:
+        if mk.add_new_mark(cur, con) == ERROR:
             continue
     elif c == st.DELETE_MARK:
-        if mk.changeExistingMarks(cur, con, 1) == ERROR:
+        if mk.change_existing_marks(cur, con, 1) == ERROR:
             continue
     elif c == st.ADD_NEW_STUDENT:
-        st.addStudent(cur, con)
+        st.add_student(cur, con)
     elif c == st.DELETE_STUDENT:
-        st.deleteStudent(cur, con)
+        st.delete_student(cur, con)
     elif c == st.SHOW_DB:
-        st.clrCnsl()
-        mk.printDB(cur)
+        mk.clr_cnsl()
+        mk.print_db(cur)
         input()
     elif c == st.EXIT_CYCLE:
-        st.clrCnsl()
+        mk.clr_cnsl()
         break
     else:
         print("Incorrent Input")
         input()
-        st.clrCnsl()
+        mk.clr_cnsl()
 
 con.commit()
 cur.close()

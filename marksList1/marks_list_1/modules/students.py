@@ -1,6 +1,6 @@
-import os
-import marks as mk
-import sqlite3
+""" Module to work with students """
+
+from . import marks as mk
 
 ERROR = 1
 OK = 0
@@ -13,51 +13,49 @@ DELETE_STUDENT = 5
 SHOW_DB = 6
 EXIT_CYCLE = 7
 
-def clrCnsl():
-    os.system("cls")
 
-
-
-def addStudent(cur, con):
-    clrCnsl()
+def add_student(cur, con):
+    """ Function to add new student to the table"""
+    mk.clr_cnsl()
     name = input("Enter student's name:     ")
     if name == "":
         print("Name must be not empty string")
         input()
         return ERROR
-    surname = input("Enter student's surname:     ")
-    if surname == "":
+    sname = input("Enter student's surname:     ")
+    if sname == "":
         print("Surname must be not empty string")
         input()
         return ERROR
     marks = input("Enter student's marks(if he has no marks just push 'Enter')      ")
     if marks.isdigit() or marks == "":
-        if mk.checkMarkString(marks):
+        if mk.check_mark_string(marks):
             print("Marks must be integer numbers")
             return ERROR
     else:
         return ERROR
-    cur.execute(""" INSERT INTO students (name, surname, marks) VALUES (?, ?, ?) """, (name, surname, marks))
+    cur.execute("""INSERT INTO students (name,surname,marks) VALUES (?,?,?)""", (name,sname,marks))
     con.commit()
-    clrCnsl()
+    mk.clr_cnsl()
     return OK
 
+def delete_student(cur, con):
+    """ Function to delete student from table """
 
-def deleteStudent(cur, con):
-    if mk.checkEmptyDB(cur):
+    if mk.check_empty_db(cur):
         print("No students")
         return ERROR
     students = cur.execute(""" SELECT * FROM students """)
-    mk.printDB(cur)
+    mk.print_db(cur)
     cur.execute(""" SELECT * FROM students """)
     students = cur.fetchall()
-    stId = int(input("Select the id of the student you want to delete:    "))
-    if stId > len(students):
+    st_id = int(input("Select the id of the student you want to delete:    "))
+    if st_id > len(students):
         print("Invalid id")
         input()
         return ERROR
-    cur.execute(""" DELETE FROM students WHERE student_id = ? """, (stId,))
-    cur.execute(""" UPDATE students SET student_id = student_id - 1 WHERE student_id > ? """, (stId,))
+    cur.execute(""" DELETE FROM students WHERE student_id = ? """, (st_id,))
+    cur.execute("""UPDATE students SET student_id=student_id - 1 WHERE student_id > ?""", (st_id,))
     con.commit()
-    clrCnsl()
+    mk.clr_cnsl()
     return OK
