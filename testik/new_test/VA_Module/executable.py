@@ -14,10 +14,15 @@ DOCUMENT_LIST = ["документ", "документа",
 PRESETATION_LIST = ["презентация", "презентацию", "презентации"]
 TEXTFILE_LIST = ["файл", "текстовый файл", "текстовый документ"]
 
-SEARCH_WIKI_LIST = ["поищи на википедии", "википедия", 
-                    "википедии", "википедию"]
-SEARCH_GOOGLE_LIST = ["загугли", "гугл", 
-                      "google", "посмотри в интернете", 
+SEARCH_WIKI_LIST = ["найди в википедии", "поищи на википедии", 
+                    "википедия", "википедии",
+                      "википедию",
+                    ]
+SEARCH_GOOGLE_LIST = ["поищи в интернете", "посмотри в гугле",
+                      "поищи в гугле", "поищи в google",
+                      "посмотри в google",
+                      "google", "посмотри в интернете",
+                      "загугли", "гугл", 
                       "узнай", "найди", "найти"]
 
 EXIT_COMMAND_LIST = ["выйти", "выйди", "выход"]
@@ -63,11 +68,11 @@ def start_VA():
                     pm.create_file(file_name, ext = ".docx")
 
             elif (com_part_action := pm.find_same_command(SEARCH_WIKI_LIST, command)) != None:
-                query = command.replace(com_part_action, "", 1)
+                query = command.replace(com_part_action, "", 1).strip()
                 ws.voice_answer_wiki(query)
             elif (com_part_action := pm.find_same_command(SEARCH_GOOGLE_LIST, command)) != None:
                 query = command.replace(com_part_action, "", 1)
-                ws.search_and_open_browser(query)
+                ws.search_and_open_browser(query).strip()
             
             elif (com_part_action := pm.find_same_command(EXIT_COMMAND_LIST, command)) != None:
                 print("Good Bye!")

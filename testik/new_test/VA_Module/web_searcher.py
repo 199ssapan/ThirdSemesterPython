@@ -38,15 +38,18 @@ def voice_answer_wiki(query, paragraph_index=0):
 
             # Convert the paragraph to speech using gTTS
             tts = gtts.gTTS(text=selected_paragraph, lang='ru')
-
+            file = open("output.mp3", "wb")
+            tts.write_to_fp(file)
+            file.close()
             # Save the speech to an audio file
-            tts.save("output.mp3")
+            
 
             # Create a Pygame mixer
             pygame.mixer.init()
             pygame.mixer.music.load("output.mp3")
 
             # Play the audio
+            ap.say(ap.ACCORDING_TO_WIKIPEDIA)
             pygame.mixer.music.play()
 
             # Listen for user interruption in a separate thread
@@ -56,10 +59,10 @@ def voice_answer_wiki(query, paragraph_index=0):
             # Wait for audio to finish playing
             while pygame.mixer.music.get_busy() and not interrupted:
                 continue
-
+            print("LL")
             # Stop the audio if it's still playing
             pygame.mixer.music.stop()
-
+            pygame.mixer.music.unload()
             # Check if interrupted
             if interrupted:
                 return "Чтение прервано пользователем."
@@ -76,7 +79,7 @@ def voice_answer_wiki(query, paragraph_index=0):
 
 def listen_for_interrupt():
     global interrupted
-
+    interrupted = False
     recognizer = sr.Recognizer()
     microphone = sr.Microphone()
 
@@ -88,11 +91,12 @@ def listen_for_interrupt():
             print(f"Вы сказали: '{command}'")
             if "прервать" in command.lower():
                 interrupted = True
+            
         except sr.UnknownValueError:
             pass
         except sr.RequestError:
             print("Не удалось распознать команду. Пожалуйста, попробуйте снова.")
-
+    
 
 def search_and_open_browser(query):
     google_search_url = f"https://www.google.com/search?q={query}"
@@ -100,7 +104,7 @@ def search_and_open_browser(query):
     try:
         response = requests.get(google_search_url)
         if response.status_code == 200:
-            ap.say(ap.ACCORDING_TO_WIKIPEDIA)
+            ap.say(ap.BROWSER_SEARCH)
             webbrowser.open(google_search_url)
             print(f"Результаты поиска в Google: {google_search_url}")
         else:
