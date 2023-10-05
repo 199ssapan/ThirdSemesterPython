@@ -62,7 +62,7 @@ def change_existing_marks(cur, con, del_flag):
     print()
     print("Mark  : ", end="")
     for i in range (len(student[MARKS])):
-        print(f"{student[MARKS][i] : 4}", end="")
+        print(f"{student[MARKS][i]:4}", end="")
     print()
     if student[3] == "":
         print("This student has no marks")
