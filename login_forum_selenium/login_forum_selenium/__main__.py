@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver.chrome.options import Options
+
 o = Options()
 o.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=o)
@@ -11,10 +12,10 @@ loginto = driver.find_element(By.XPATH, "//*[@id=\"header\"]/div[3]/table/tbody/
 loginto.click()
 time.sleep(1)
 email = driver.find_element(By.XPATH, "//*[@id=\"loginForm\"]/small/input[1]")
-email.send_keys("0f_f0")
+email.send_keys("")
 time.sleep(1)
 password = driver.find_element(By.XPATH, "//*[@id=\"loginForm\"]/small/input[2]")
-password.send_keys("kliker")
+password.send_keys("")
 time.sleep(1)
 login_button = driver.find_element(By.XPATH, "//*[@id=\"loginForm\"]/small/input[3]")
 login_button.click()
