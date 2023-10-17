@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package math;
+
+message strRequest
+{
+    string expression = 1;
+}
+
+message doubleResponse
+{
+    double number = 1;
+}
+
+service evaluator
+{
+    rpc evaluate (strRequest) returns (doubleResponse);
+}
